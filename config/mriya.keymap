@@ -1,0 +1,207 @@
+/*
+ * Copyright (c) 2023 Andrei Gaevskii
+ *
+ * SPDX-License-Identifier: MIT
+ */
+
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/bt.h>
+#include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/keys.h>
+
+#define DEF 0
+#define LWR 1
+#define RSE 2
+#define ADJ 3
+
+&lt { quick_tap_ms = <200>; };
+
+&mt {
+    quick_tap_ms = <200>;
+    tapping-term-ms = <150>;
+};
+
+/ {
+    behaviors {
+        homerow_hold: homerow_hold {
+            compatible = "zmk,behavior-hold-tap";
+            label = "HOMEROW_HOLD";
+            bindings = <&kp>, <&kp>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <210>;
+            flavor = "balanced";
+            quick-tap-ms = <0>;
+        };
+
+        behavior_capsword: behavior_capsword {
+            compatible = "zmk,behavior-caps-word";
+            label = "BEHAVIOR_CAPSWORD";
+            #binding-cells = <0>;
+            continue-list = <A B C D E F G H I J K L M N O P Q R S T U V W X Y Z NUMBER_1 N1 NUMBER_2 N2 NUMBER_3 N3 NUMBER_4 N4 NUMBER_5 N5 NUMBER_6 N6 NUMBER_7 N7 NUMBER_8 N8 NUMBER_9 N9 NUMBER_0 N0 BACKSPACE BSPC DELETE DEL KP_NUMBER_1 KP_N1 KP_NUMBER_2 KP_N2 KP_NUMBER_3 KP_N3 KP_NUMBER_4 KP_N4 KP_NUMBER_5 KP_N5 KP_NUMBER_6 KP_N6 KP_NUMBER_7 KP_N7 KP_NUMBER_8 KP_N8 KP_NUMBER_9 KP_N9 KP_NUMBER_0 KP_N0 SEMI SQT COMMA DOT RIGHT_BRACKET LBKT LEFT_BRACKET RBKT GRAVE TILDE LESS_THAN PERIOD GREATER_THAN SEMICOLON COLON APOSTROPHE DOUBLE_QUOTES LEFT_BRACE RIGHT_BRACE>;
+        };
+
+        behavior_shift_sticky: behavior_shift_sticky {
+            compatible = "zmk,behavior-hold-tap";
+            label = "BEHAVIOR_SHIFT_STICKY";
+            bindings = <&kt>, <&sk>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+            flavor = "balanced";
+        };
+
+        behavior_amper_diam: behavior_amper_diam {
+            compatible = "zmk,behavior-tap-dance";
+            label = "BEHAVIOR_AMPER_DIAM";
+            #binding-cells = <0>;
+            bindings = <&kp AMPERSAND>, <&new_macro_diam>;
+        };
+
+        behavior_del_raise_layer: behavior_del_raise_layer {
+            compatible = "zmk,behavior-hold-tap";
+            label = "BEHAVIOR_DEL_RAISE_LAYER";
+            bindings = <&tog>, <&kp>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+        };
+
+        behavior_rus_eng: behavior_rus_eng {
+            compatible = "zmk,behavior-hold-tap";
+            label = "BEHAVIOR_RUS_ENG";
+            bindings = <&kp>, <&kp>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <210>;
+            flavor = "balanced";
+            quick-tap-ms = <0>;
+        };
+
+        behavior_zap_udalslovo: behavior_zap_udalslovo {
+            compatible = "zmk,behavior-tap-dance";
+            label = "BEHAVIOR_ZAP_UDALSLOVO";
+            #binding-cells = <0>;
+            bindings = <&kp LS(SLASH)>, <&macro_udal_slovo>;
+
+            tapping-term-ms = <210>;
+        };
+
+        skobki_ravno: skobki_ravno {
+            compatible = "zmk,behavior-tap-dance";
+            label = "SKOBKI_RAVNO";
+            #binding-cells = <0>;
+            bindings = <&kp EQUAL>, <&new_macro_skobki>;
+        };
+    };
+
+    macros {
+        new_macro_00: new_macro_00 {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp N0 &kp N0>;
+            label = "NEW_MACRO_00";
+            wait-ms = <40>;
+            tap-ms = <40>;
+        };
+
+        new_macro_diam: new_macro_diam {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp N0 &kp N0 &kp D &kp N8 &kp LA(X)>;
+            label = "NEW_MACRO_DIAM";
+            wait-ms = <40>;
+            tap-ms = <40>;
+        };
+
+        new_macro_ctrlC: new_macro_ctrlC {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LC(C)>;
+            label = "NEW_MACRO_CTRLC";
+        };
+
+        new_macro_ctrlV: new_macro_ctrlV {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LC(V)>;
+            label = "NEW_MACRO_CTRLV";
+        };
+
+        new_macro_ctrlX: new_macro_ctrlX {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LC(X)>;
+            label = "NEW_MACRO_CTRLX";
+        };
+
+        macro_mail_rabota: macro_mail_rabota {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp A &kp A &kp L &kp O &kp N &kp Z &kp O &kp V &kp AT &kp A &kp O &kp D &kp I &kp M &kp DOT &kp R &kp U>;
+            label = "MACRO_MAIL_RABOTA";
+            wait-ms = <20>;
+            tap-ms = <20>;
+        };
+
+        macro_udal_slovo: macro_udal_slovo {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LC(LEFT) &kp LC(LS(RIGHT)) &kp BACKSPACE>;
+            label = "MACRO_UDAL_SLOVO";
+        };
+
+        new_macro_skobki: new_macro_skobki {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LEFT_PARENTHESIS &kp RIGHT_PARENTHESIS &kp LEFT>;
+            label = "NEW_MACRO_SKOBKI";
+        };
+    };
+
+    combos { compatible = "zmk,combos"; };
+
+    keymap {
+        compatible = "zmk,keymap";
+
+        default_layer {
+            bindings = <
+           &kp ESC             &kp N1                    &kp N2                              &kp N3                      &kp N4                 &kp N5     &kp N6   &kp N7                 &kp N8                       &kp N9                     &kp N0                       &kp MINUS
+&kp GRAVE  &mt CAPS TAB        &kp Q                     &kp W                               &kp E                       &kp R                  &kp T      &kp Y    &kp U                  &kp I                        &kp O                      &kp P                        &kp LBKT   &kp RIGHT_BRACKET
+           &behavior_capsword  &homerow_hold LEFT_ALT A  &homerow_hold LEFT_WIN S            &homerow_hold LEFT_SHIFT D  &homerow_hold LCTRL F  &kp G      &kp H    &homerow_hold RCTRL J  &homerow_hold RIGHT_SHIFT K  &homerow_hold RIGHT_WIN L  &homerow_hold LEFT_ALT SEMI  &kp SQT
+           &kp BACKSPACE       &kp Z                     &kp X                               &kp C                       &kp V                  &kp B      &kp N    &kp M                  &kp COMMA                    &kp DOT                    &kp FSLH                     &kp BSLH
+                                                         &behavior_rus_eng LS(LEFT_ALT) DEL  &tog 2                      &lt 1 SPACE            &kp RET    &kp DEL  &lt 1 BACKSPACE        &behavior_zap_udalslovo      &skobki_ravno
+            >;
+        };
+
+        lower_layer {
+            bindings = <
+           &kp C_MUTE          &kp C_VOLUME_DOWN  &kp C_VOLUME_UP              &kp C_PLAY_PAUSE             &kp C_PREVIOUS             &kp C_NEXT     &trans         &trans    &trans    &trans     &trans           &trans
+&kp K_APP  &macro_mail_rabota  &kp F1             &kp F2                       &kp F3                       &kp F4                     &kp F5         &kp F6         &kp F7    &kp F8    &kp F9     &kp F10          &kp F11         &kp F12
+           &none               &kp LEFT_ALT       &homerow_hold LEFT_WIN LEFT  &homerow_hold LEFT_SHIFT UP  &homerow_hold LCTRL RIGHT  &kp DOLLAR     &kp PAGE_UP    &kp LEFT  &kp UP    &kp RIGHT  &kp PRINTSCREEN  &kp SCROLLLOCK
+           &none               &none              &new_macro_ctrlX             &kp DOWN                     &new_macro_ctrlV           &kp PERCENT    &kp PAGE_DOWN  &kp END   &kp DOWN  &kp HOME   &kp PAUSE_BREAK  &kp INSERT
+                                                  &trans                       &trans                       &trans                     &trans         &trans         &trans    &trans    &trans
+            >;
+        };
+
+        raise_layer {
+            bindings = <
+                             &kp ESCAPE                              &behavior_amper_diam  &new_macro_skobki             &kp EQUAL                       &mt LBKT ASTRK             &mt UNDERSCORE KP_SLASH    &kp F1      &kp F2    &kp F3     &kp F4     &kp F5   &kp F6
+&mt C_AL_CALCULATOR PERCENT  &mt CARET DOLLAR                        &kp TAB               &kp KP_N7                     &kp KP_N8                       &kp KP_N9                  &mt KP_MINUS KP_PLUS       &kp KP_NUM  &kp HOME  &kp PSCRN  &kp PG_UP  &kp F7   &kp F8   &mo 3
+                             &mt LS(A) LC(E)                         &new_macro_00         &homerow_hold LEFT_WIN KP_N4  &homerow_hold LEFT_SHIFT KP_N5  &homerow_hold LCTRL KP_N6  &kp KP_N0                  &kp PG_UP   &kp LEFT  &kp UP     &kp RIGHT  &kp F9   &kp F10
+                             &mt RIGHT_PARENTHESIS LEFT_PARENTHESIS  &mt FSLH KP_DOT       &homerow_hold LEFT_ALT KP_N1  &kp KP_N2                       &kp KP_N3                  &kp BACKSPACE              &kp PG_DN   &kp END   &kp DOWN   &kp HOME   &kp F11  &kp F12
+                                                                                           &trans                        &trans                          &trans                     &trans                     &trans      &trans    &trans     &trans
+            >;
+        };
+
+        adjust_layer {
+            bindings = <
+       &none        &none         &none         &none         &none         &none           &none         &none         &none         &none         &none         &none
+&none  &bootloader  &none         &none         &none         &none         &none           &none         &none         &none         &none         &none         &bootloader  &none
+       &bt BT_CLR   &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4    &bt BT_SEL 4  &bt BT_SEL 3  &bt BT_SEL 2  &bt BT_SEL 1  &bt BT_SEL 0  &bt BT_CLR
+       &sys_reset   &none         &none         &none         &none         &none           &none         &none         &none         &none         &none         &sys_reset
+                                  &none         &trans        &none         &trans          &trans        &none         &trans        &none
+            >;
+        };
+    };
+};
