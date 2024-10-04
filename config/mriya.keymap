@@ -93,6 +93,17 @@
             #binding-cells = <0>;
             bindings = <&kp EQUAL>, <&new_macro_skobki>;
         };
+
+        new_behavior_tab_skobki: new_behavior_tab_skobki {
+            compatible = "zmk,behavior-hold-tap";
+            label = "NEW_BEHAVIOR_TAB_SKOBKI";
+            bindings = <&new_macro_skobki>, <&kp>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <210>;
+            flavor = "balanced";
+            quick-tap-ms = <0>;
+        };
     };
 
     macros {
@@ -193,11 +204,11 @@
 
         raise_layer {
             bindings = <
-                             &kp ESCAPE                              &behavior_amper_diam  &new_macro_skobki             &kp EQUAL                       &mt LBKT ASTRK             &mt UNDERSCORE KP_SLASH    &kp F1      &kp F2    &kp F3     &kp F4     &kp F5   &kp F6
-&mt C_AL_CALCULATOR PERCENT  &mt CARET DOLLAR                        &kp TAB               &kp KP_N7                     &kp KP_N8                       &kp KP_N9                  &mt KP_MINUS KP_PLUS       &kp KP_NUM  &kp HOME  &kp PSCRN  &kp PG_UP  &kp F7   &kp F8   &mo 3
-                             &mt LS(A) LC(E)                         &new_macro_00         &homerow_hold LEFT_WIN KP_N4  &homerow_hold LEFT_SHIFT KP_N5  &homerow_hold LCTRL KP_N6  &kp KP_N0                  &kp PG_UP   &kp LEFT  &kp UP     &kp RIGHT  &kp F9   &kp F10
-                             &mt RIGHT_PARENTHESIS LEFT_PARENTHESIS  &mt FSLH KP_DOT       &homerow_hold LEFT_ALT KP_N1  &kp KP_N2                       &kp KP_N3                  &kp BACKSPACE              &kp PG_DN   &kp END   &kp DOWN   &kp HOME   &kp F11  &kp F12
-                                                                                           &trans                        &trans                          &trans                     &trans                     &trans      &trans    &trans     &trans
+                             &kp ESCAPE                              &mt LS(V) LS(X)                 &mt LS(A) LC(E)               &kp EQUAL                       &mt LBKT ASTRK             &mt UNDERSCORE KP_SLASH    &kp F1      &kp F2    &kp F3     &kp F4     &kp F5   &kp F6
+&mt C_AL_CALCULATOR PERCENT  &mt CARET DOLLAR                        &new_behavior_tab_skobki 0 TAB  &kp KP_N7                     &kp KP_N8                       &kp KP_N9                  &mt KP_MINUS KP_PLUS       &kp KP_NUM  &kp HOME  &kp PSCRN  &kp PG_UP  &kp F7   &kp F8   &mo 3
+                             &mt RIGHT_PARENTHESIS LEFT_PARENTHESIS  &new_macro_00                   &homerow_hold LEFT_WIN KP_N4  &homerow_hold LEFT_SHIFT KP_N5  &homerow_hold LCTRL KP_N6  &kp KP_N0                  &kp PG_UP   &kp LEFT  &kp UP     &kp RIGHT  &kp F9   &kp F10
+                             &behavior_amper_diam                    &mt FSLH KP_DOT                 &homerow_hold LEFT_ALT KP_N1  &kp KP_N2                       &kp KP_N3                  &kp BACKSPACE              &kp PG_DN   &kp END   &kp DOWN   &kp HOME   &kp F11  &kp F12
+                                                                                                     &trans                        &trans                          &trans                     &trans                     &trans      &trans    &trans     &trans
             >;
         };
 
